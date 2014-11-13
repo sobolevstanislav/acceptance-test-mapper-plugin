@@ -54,9 +54,6 @@ public class WhenGenerateScenarioStepsForEachStoryFileTest {
 
     @Test
     public void should_create_scenario_steps_class_for_each_story_file() throws MojoExecutionException, MojoFailureException, IOException {
-        System.out.println(pluginOutputDirectory.getAbsolutePath());
-        System.out.println(newStoriesDirectory.getAbsolutePath());
-        System.out.println(oldStoriesDirectory.getAbsolutePath());
         plugin.execute();
     }
 }

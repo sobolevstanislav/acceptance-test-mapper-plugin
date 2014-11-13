@@ -12,7 +12,7 @@ public class XMLUnmarshaller {
 
     public static AcceptanceSteps unmarshal(AcceptanceSteps stepPairsFromXML) {
         try {
-            File file = new File("resources/steps/acceptance-steps.xml");
+            File file = new File("src/main/resources/steps/acceptance-steps.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(AcceptanceSteps.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();

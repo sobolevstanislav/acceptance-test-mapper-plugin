@@ -33,6 +33,14 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
     private List<StepCandidate> stepCandidates;
     private Map<String, Integer> argumentNames;
 
+    private StepMethod stepMethod;
+    private Set<String> imports;
+
+    String[] parameterNames;
+    private List<MethodArgument> methodArguments;
+    StepMatcher stepMatcher;
+    List<ParameterConverters.ParameterConverter> converters;
+
     public ScenarioStepsFactory(String rootPackage, ClassLoader classLoader) {
         super(new MostUsefulConfiguration(), rootPackage, classLoader);
         this.rootPackage = rootPackage;
@@ -60,11 +68,11 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         ScenarioStepsClassModel scenarioStepsClassModel = new ScenarioStepsClassModel();
         scenarioStepsClassModel.setPackageName(rootPackage);
         scenarioStepsClassModel.setClassNamePrefix(getClassNameFrom(story.getName()));
-        Set<String> imports = new HashSet<String>();
+        imports = new HashSet<String>();
         Set<FieldsSteps> fieldSteps = new HashSet<FieldsSteps>();
         List<ScenarioMethod> scenarios = new ArrayList<ScenarioMethod>();
 
-        matchStepsByStoryScenarios(story, scenarios, imports, fieldSteps);
+        matchStepsByStoryScenarios(story, scenarios, fieldSteps);
 
         scenarioStepsClassModel.setImports(imports);
         scenarioStepsClassModel.setFieldsSteps(fieldSteps);
@@ -73,7 +81,7 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         return scenarioStepsClassModel;
     }
 
-    private void matchStepsByStoryScenarios(Story story, List<ScenarioMethod> scenarios, Set<String> imports, Set<FieldsSteps> fieldSteps) {
+    private void matchStepsByStoryScenarios(Story story, List<ScenarioMethod> scenarios, Set<FieldsSteps> fieldSteps) {
         for (Scenario scenario : story.getScenarios()) {
             System.out.println("SCENARIO: " + scenario.getTitle());
             ScenarioMethod scenarioMethod = new ScenarioMethod();
@@ -85,7 +93,7 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
             argumentNames = new HashMap<String, Integer>();
             List<StepMethod> stepMethods = new ArrayList<StepMethod>();
 
-            matchStepsByStorySteps(scenario, imports, scenarioMethodArguments, thrownExceptions, fieldSteps, stepMethods);
+            matchStepsByStorySteps(scenario, scenarioMethodArguments, thrownExceptions, fieldSteps, stepMethods);
 
             scenarioMethod.setStepMethods(stepMethods);
             List<MethodArgument> methodArguments = resolveScenarioParameters(scenarioMethodArguments, scenarioMethod.getScenarioParameters());
@@ -95,13 +103,13 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         }
     }
 
-    private void matchStepsByStorySteps(Scenario scenario, Set<String> imports, List<MethodArgument> scenarioMethodArguments, Set<String> thrownExceptions, Set<FieldsSteps> fieldSteps, List<StepMethod> stepMethods) {
+    private void matchStepsByStorySteps(Scenario scenario, List<MethodArgument> scenarioMethodArguments, Set<String> thrownExceptions, Set<FieldsSteps> fieldSteps, List<StepMethod> stepMethods) {
 
         String previousNonAndStep = null;
 
         for (String step : scenario.getSteps()) {
             System.out.println("STEP: " + step.toString());
-            StepMethod matchedStepMethod = getMatchedStepMethodFor(step, previousNonAndStep, imports, scenarioMethodArguments, thrownExceptions);
+            StepMethod matchedStepMethod = getMatchedStepMethodFor(step, previousNonAndStep, scenarioMethodArguments, thrownExceptions);
             if (matchedStepMethod.getMethodName() == null) {
                 continue;
             }
@@ -154,9 +162,9 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         return arguments;
     }
 
-    public StepMethod getMatchedStepMethodFor(String step, String previousNonAndStep, Set<String> imports, List<MethodArgument> scenarioMethodArguments, Set<String> thrownExceptions) {
+    public StepMethod getMatchedStepMethodFor(String step, String previousNonAndStep, List<MethodArgument> scenarioMethodArguments, Set<String> thrownExceptions) {
         System.out.println("Matching step");
-        StepMethod stepMethod = new StepMethod();
+        stepMethod = new StepMethod();
         for (StepCandidate candidate : getStepCandidates()) {
             System.out.println("CANDIDATE: " + candidate.toString());
             if (candidate.matches(step, previousNonAndStep)) {
@@ -166,22 +174,9 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
                     thrownExceptions.add(exceptionType.getSimpleName());
                     imports.add(exceptionType.getCanonicalName());
                 }
-                Class<?> stepClass = candidate.getMethod().getDeclaringClass();
-                stepMethod.setMethodClass(stepClass);
-                imports.add(stepClass.getCanonicalName());
-                String fieldClassName = stepClass.getSimpleName();
-                String fieldName = replaceFirstCharacterToLowerCase(fieldClassName);
-                stepMethod.setFieldName(fieldName);
-                //get method arguments
-                List<MethodArgument> methodArguments = new ArrayList<MethodArgument>();
-                StepCandidate stepCandidate = (StepCandidate) Extract.field("stepCandidate").from(candidate);
-                StepMatcher stepMatcher = (StepMatcher) Extract.field("stepMatcher").from(stepCandidate);
 
-                StepCreator stepCreator = (StepCreator) Extract.field("stepCreator").from(stepCandidate);
-                ParameterConverters parameterConverters = (ParameterConverters) Extract.field("parameterConverters").from(stepCreator);
-                List<ParameterConverters.ParameterConverter> converters = (List<ParameterConverters.ParameterConverter>) Extract.field("converters").from(parameterConverters);
+                setParametersToStepMethodAndStepCandidate(candidate);
 
-                String[] parameterNames = stepMatcher.parameterNames();
                 for (int i = 0; i < parameterNames.length; i++) {
                     MethodArgument methodArgument = new MethodArgument();
                     String parameterName = getUniqueParameterName(parameterNames[i]);
@@ -212,6 +207,25 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
             }
         }
         return stepMethod;
+    }
+
+    private void setParametersToStepMethodAndStepCandidate(StepCandidate candidate) {
+        Class<?> stepClass = candidate.getMethod().getDeclaringClass();
+        stepMethod.setMethodClass(stepClass);
+        imports.add(stepClass.getCanonicalName());
+        String fieldClassName = stepClass.getSimpleName();
+        String fieldName = replaceFirstCharacterToLowerCase(fieldClassName);
+        stepMethod.setFieldName(fieldName);
+        //get method arguments
+        methodArguments = new ArrayList<MethodArgument>();
+        StepCandidate stepCandidate = (StepCandidate) Extract.field("stepCandidate").from(candidate);
+        stepMatcher = (StepMatcher) Extract.field("stepMatcher").from(stepCandidate);
+
+        StepCreator stepCreator = (StepCreator) Extract.field("stepCreator").from(stepCandidate);
+        ParameterConverters parameterConverters = (ParameterConverters) Extract.field("parameterConverters").from(stepCreator);
+        converters = (List<ParameterConverters.ParameterConverter>) Extract.field("converters").from(parameterConverters);
+
+        parameterNames = stepMatcher.parameterNames();
     }
 
     private void addToImports(Set<String> imports, Class<?> argumentClass) {
