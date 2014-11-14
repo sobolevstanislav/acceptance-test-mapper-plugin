@@ -10,17 +10,18 @@ import javax.xml.bind.Unmarshaller;
 
 public class XMLUnmarshaller {
 
-    public static AcceptanceSteps unmarshal(AcceptanceSteps stepPairsFromXML) {
+    public static AcceptanceSteps unmarshal() {
+        AcceptanceSteps acceptanceSteps = new AcceptanceSteps();
         try {
             File file = new File("src/main/resources/steps/acceptance-steps.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(AcceptanceSteps.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            stepPairsFromXML = (AcceptanceSteps) jaxbUnmarshaller.unmarshal(file);
+            acceptanceSteps = (AcceptanceSteps) jaxbUnmarshaller.unmarshal(file);
 
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        return stepPairsFromXML;
+        return acceptanceSteps;
     }
 }

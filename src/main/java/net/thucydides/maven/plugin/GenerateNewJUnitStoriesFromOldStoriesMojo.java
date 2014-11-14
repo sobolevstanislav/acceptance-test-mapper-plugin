@@ -1,13 +1,10 @@
 package net.thucydides.maven.plugin;
 
-import net.thucydides.maven.plugin.xml.steps.AcceptanceSteps;
-import net.thucydides.maven.plugin.xml.unmarshaller.XMLUnmarshaller;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.MojoFailureException;
@@ -91,28 +88,23 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
      */
     public File outputDirectory;
 
+    public NewStoriesGenerator acceptanceTestStoriesGenerator;
     private StoryParser storyParser;
-    ScenarioStepsFactory scenarioStepsFactory;
+    private ScenarioStepsFactory scenarioStepsFactory;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-        System.out.println("EXECUTE() started in:" + new Date().toString());
         storyParser = new RegexStoryParser(new LocalizedKeywords());
         scenarioStepsFactory = new ScenarioStepsFactory(packageForOldScenarioSteps, new GetClassloaderWithCustomClasspath(project, classesDirectory, testClassesDirectory).getClassLoader());
+        acceptanceTestStoriesGenerator = new NewStoriesGenerator(oldStoriesDirectory, newStoriesDirectory);
         File oldStoriesDir = oldStoriesDirectory;
-        File newStoriesDir = newStoriesDirectory;
-        AcceptanceSteps acceptanceSteps = new AcceptanceSteps();
-        XMLUnmarshaller.unmarshal(acceptanceSteps);
         findStoryFilesAndGenerateNewStories(oldStoriesDir);
     }
 
     private void findStoryFilesAndGenerateNewStories(File oldStoriesDir) throws MojoExecutionException {
-        System.out.println("Finding and generating stories started");
         if (oldStoriesDir.exists() && oldStoriesDir.isDirectory()) {
             for (File file : getFiles(oldStoriesDir)) {
-                System.out.println("Story " + file.getName() + " found");
                 if (file.isFile() && getExtension(file.getPath()).equals("story")) {
                     Story parsedOldStory = generateStubFromStoryFile(file);
-                    createConnectionBetweenStepCandidates(parsedOldStory);
                 } else if (file.isDirectory()) {
                     findStoryFilesAndGenerateNewStories(file);
                 }
@@ -142,7 +134,6 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
     }
 
     private Story generateStubFromStoryFile(File story) throws MojoExecutionException {
-        System.out.println("Generating stub from story " + story.getName());
         String className = getClassNameFrom(story.getName());
         Story parsedOldStory;
         try {
@@ -166,21 +157,6 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
                     .append(word.substring(1));
         }
         return builder.toString();
-    }
-
-    private void createConnectionBetweenStepCandidates(Story parsedOldStory) {
-        Story parsedNewStory = parsedOldStory;
-        String newStoryName = parsedOldStory.getName().substring(0, parsedOldStory.getName().indexOf(".")) + "_new";
-        generateNewStoryFiles(parsedNewStory, newStoryName);
-    }
-
-    private void generateNewStoryFiles(Story parsedNewStory, String newStoryName) {
-        newStoriesDirectory = new File("./src/test/stories/new/" + newStoryName + ".story");
-        try {
-            newStoriesDirectory.createNewFile();
-        } catch (IOException ex) {
-
-        }
     }
 
 }

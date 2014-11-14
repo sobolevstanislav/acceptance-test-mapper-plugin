@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class StepsPairBean {
 
-    @XmlElement(name = "oldsteps-step")
+    @XmlElement(name = "old-step")
     private String oldStep;
 
     @XmlElement(name = "new-step")
