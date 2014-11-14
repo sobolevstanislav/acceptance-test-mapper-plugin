@@ -41,9 +41,6 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
     private StepMatcher stepMatcher;
     private List<ParameterConverters.ParameterConverter> converters;
 
-    private int scenarioIndex = 0;
-    private int stepIndex = 0;
-
     private Story newStory;
     private List<Scenario> newScenarioList;
     private List<String> newStepList;
@@ -80,7 +77,8 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         List<ScenarioMethod> scenarios = new ArrayList<ScenarioMethod>();
 
         matchStepsByStoryScenarios(story, scenarios, fieldSteps);
-
+        newStory = new Story(story.getDescription(), story.getNarrative(), newScenarioList);
+        newStory.namedAs(story.getName());
         scenarioStepsClassModel.setImports(imports);
         scenarioStepsClassModel.setFieldsSteps(fieldSteps);
         scenarioStepsClassModel.setScenarios(scenarios);
@@ -103,15 +101,14 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
             List<StepMethod> stepMethods = new ArrayList<StepMethod>();
 
             matchStepsByStorySteps(scenario, thrownExceptions, fieldSteps, stepMethods);
+            newScenarioList.add(new Scenario(scenario.getTitle(), scenario.getMeta(), scenario.getGivenStories(), scenario.getExamplesTable(), newStepList));
             List<MethodArgument> methodArguments = resolveScenarioParameters(scenarioMethod.getScenarioParameters());
 
             scenarioMethod.setStepMethods(stepMethods);
             scenarioMethod.setArguments(methodArguments);
             scenarioMethod.setThrownExceptions(thrownExceptions);
             scenarios.add(scenarioMethod);
-            scenarioIndex++;
         }
-        scenarioIndex = 0;
     }
 
     private void matchStepsByStorySteps(Scenario scenario, Set<String> thrownExceptions, Set<FieldsSteps> fieldSteps, List<StepMethod> stepMethods) {
@@ -130,9 +127,33 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
             if (!step.startsWith(Keywords.AND)) {
                 previousNonAndStep = step;
             }
-            stepIndex++;
         }
-        stepIndex = 0;
+    }
+
+    public StepMethod getMatchedStepMethodFor(String step, String previousNonAndStep, Set<String> thrownExceptions) {
+        stepMethod = new StepMethod();
+        for (StepCandidate candidate : getStepCandidates()) {
+            if (candidate.matches(step, previousNonAndStep)) {
+                stepMethod.setMethodName(candidate.getMethod().getName());
+                Class<?>[] exceptionTypes = candidate.getMethod().getExceptionTypes();
+                for (Class<?> exceptionType : exceptionTypes) {
+                    thrownExceptions.add(exceptionType.getSimpleName());
+                    imports.add(exceptionType.getCanonicalName());
+                }
+                setParametersToStepMethodAndStepCandidate(candidate);
+                addMethodArgumentsToStepMethod(candidate);
+                String newStep = checkIfStepCandidateExistInXMLPairFile(candidate);
+
+                if (newStep != null) {
+                    newStepList.add(newStep);
+                }
+                else {
+                    newStepList.add(step);
+                }
+                return stepMethod;
+            }
+        }
+        return stepMethod;
     }
 
     private List<MethodArgument> resolveScenarioParameters(List<String> scenarioParameters) {
@@ -171,32 +192,6 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
             arguments.add(m.group(1));
         }
         return arguments;
-    }
-
-    public StepMethod getMatchedStepMethodFor(String step, String previousNonAndStep, Set<String> thrownExceptions) {
-        stepMethod = new StepMethod();
-        for (StepCandidate candidate : getStepCandidates()) {
-            if (candidate.matches(step, previousNonAndStep)) {
-                stepMethod.setMethodName(candidate.getMethod().getName());
-                Class<?>[] exceptionTypes = candidate.getMethod().getExceptionTypes();
-                for (Class<?> exceptionType : exceptionTypes) {
-                    thrownExceptions.add(exceptionType.getSimpleName());
-                    imports.add(exceptionType.getCanonicalName());
-                }
-                setParametersToStepMethodAndStepCandidate(candidate);
-                addMethodArgumentsToStepMethod(candidate);
-                String newStep = checkIfStepCandidateExistInXMLPairFile(candidate);
-
-                if (newStep != null) {
-                    newStepList.add(newStep);
-                }
-                else {
-                    newStepList.add(step);
-                }
-                return stepMethod;
-            }
-        }
-        return stepMethod;
     }
 
     private void setParametersToStepMethodAndStepCandidate(StepCandidate candidate) {
@@ -317,5 +312,13 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         }
 
         throw new ParameterConverters.ParameterConvertionFailed("No parameter converter for " + type);
+    }
+
+    public Story getNewStory() {
+        return newStory;
+    }
+
+    public void setNewStory(Story newStory) {
+        this.newStory = newStory;
     }
 }

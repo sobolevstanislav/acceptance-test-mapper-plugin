@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.jbehave.core.i18n.LocalizedKeywords;
+import org.jbehave.core.model.Scenario;
 import org.jbehave.core.model.Story;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.parsers.StoryParser;
@@ -144,7 +145,12 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
             throw new MojoExecutionException("Error creating file " + className, e);
         }
         scenarioStepsFactory.createScenarioStepsClassModelFrom(parsedOldStory);
+        createNewStoryFiles(scenarioStepsFactory.getNewStory());
         return parsedOldStory;
+    }
+
+    private void createNewStoryFiles(Story newStory) {
+        System.out.println(newStory.getName());
     }
 
     private static String getClassNameFrom(String name) {
