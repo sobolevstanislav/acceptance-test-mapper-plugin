@@ -5,6 +5,7 @@ import net.thucydides.jbehave.reflection.Extract;
 import net.thucydides.maven.plugin.generate.*;
 import net.thucydides.maven.plugin.model.ScenarioStepsClassModel;
 import net.thucydides.maven.plugin.xml.steps.AcceptanceSteps;
+import net.thucydides.maven.plugin.xml.steps.NewStep;
 import net.thucydides.maven.plugin.xml.steps.StepsPairBean;
 import net.thucydides.maven.plugin.xml.unmarshaller.XMLUnmarshaller;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -46,6 +47,7 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
     private List<String> newStepList;
 
     private List<MethodArgument> scenarioMethodArguments;
+    AcceptanceSteps acceptanceSteps;
 
     public ScenarioStepsFactory(String rootPackage, ClassLoader classLoader) {
         super(new MostUsefulConfiguration(), rootPackage, classLoader);
@@ -145,9 +147,9 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
                 String newStep = checkIfStepCandidateExistInXMLPairFile(candidate);
 
                 if (newStep != null) {
+                    changeParametersInNewNewStepToCurrent(newStep);
                     newStepList.add(newStep);
-                }
-                else {
+                } else {
                     newStepList.add(step);
                 }
                 return stepMethod;
@@ -244,11 +246,11 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
 
     private String checkIfStepCandidateExistInXMLPairFile(StepCandidate candidate) {
         String newStep = null;
-        AcceptanceSteps acceptanceSteps;
+
         acceptanceSteps = XMLUnmarshaller.unmarshal();
         for (StepsPairBean stepsPairBean : acceptanceSteps.getStepsBeanList()) {
             if (stepsPairBean.getOldStep().equalsIgnoreCase(candidate.toString())) {
-                newStep = stepsPairBean.getNewStep();
+                newStep = stepsPairBean.getNewStep().getStepAsString();
             }
         }
         return newStep;
@@ -312,6 +314,20 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         }
 
         throw new ParameterConverters.ParameterConvertionFailed("No parameter converter for " + type);
+    }
+
+    public void changeParametersInNewNewStepToCurrent(String newStep) {
+        System.out.println(newStep);
+        System.out.println(newStep.indexOf("$"));
+        if(newStep.indexOf(" ", newStep.indexOf("$")) == -1) {
+            System.out.println(newStep.length()-1);
+        }
+        else {
+            System.out.println(newStep.indexOf(" ", newStep.indexOf("$")));
+        }
+        for (int i = 0; i < parameterNames.length; i++) {
+            newStep.replaceFirst(acceptanceSteps.getStepsBeanList())
+        }
     }
 
     public Story getNewStory() {

@@ -11,7 +11,7 @@ public class StepsPairBean {
     private String oldStep;
 
     @XmlElement(name = "new-step")
-    private String newStep;
+    private NewStep newStep;
 
     public String getOldStep() {
         return oldStep;
@@ -21,11 +21,11 @@ public class StepsPairBean {
         this.oldStep = oldStep;
     }
 
-    public String getNewStep() {
+    public NewStep getNewStep() {
         return newStep;
     }
 
-    public void setNewStep(String newStep) {
+    public void setNewStep(NewStep newStep) {
         this.newStep = newStep;
     }
 }

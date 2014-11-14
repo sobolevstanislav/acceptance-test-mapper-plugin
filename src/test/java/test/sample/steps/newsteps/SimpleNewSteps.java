@@ -19,7 +19,7 @@ public class SimpleNewSteps {
         System.out.println("I have an implemented JBehave scenario with one " + parameter);
     }
 
-    @Given("the scenario with $first and $second also works")
+    @Given("the scenario with '$first' and $second also works")
     public void givenIHaveAnImplementedJBehaveScenarioWithTwoParameters(String first, String second) {
         System.out.println("I have an implemented JBehave scenario with two " + first + ", " + second + " parameters.");
     }

@@ -1,5 +1,6 @@
 package net.thucydides.maven.plugin;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 
@@ -49,7 +50,7 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
     /**
      * Package name for Scenario jbehave steps
      *
-     * @parameter expression="${project.scenario.satisfy.web.steps.package}" default-value="${project.groupId}"
+     * @parameter expression="${project.scenario.satisfy.web.steps.package}"
      * @required
      */
     public String packageForNewScenarioSteps;
@@ -151,6 +152,11 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
 
     private void createNewStoryFiles(Story newStory) {
         System.out.println(newStory.getName());
+        for(Scenario scenario : newStory.getScenarios()) {
+            for(String step : scenario.getSteps()) {
+                System.out.println(step);
+            }
+        }
     }
 
     private static String getClassNameFrom(String name) {

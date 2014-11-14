@@ -38,4 +38,9 @@ public class SimpleOldSteps {
     public void thenUserShouldSeeTitleWithText(String titleText) throws SimpleException {
         System.out.println("User see page with title - " + titleText);
     }
+
+    @Then("user will see custom $customText text")
+    public void thenCustomStepHappens(String customText) {
+        System.out.println("Custom step " + customText + " happened");
+    }
 }
