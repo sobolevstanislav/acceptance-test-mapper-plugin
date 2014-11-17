@@ -11,7 +11,7 @@ public class NewStep {
     private String stepAsString;
 
     @XmlElement(name = "params")
-    private String[] params;
+    private Params params;
 
     public String getStepAsString() {
         return stepAsString;
@@ -21,11 +21,11 @@ public class NewStep {
         this.stepAsString = stepAsString;
     }
 
-    public String[] getParams() {
+    public Params getParams() {
         return params;
     }
 
-    public void setParams(String[] params) {
+    public void setParams(Params params) {
         this.params = params;
     }
 }

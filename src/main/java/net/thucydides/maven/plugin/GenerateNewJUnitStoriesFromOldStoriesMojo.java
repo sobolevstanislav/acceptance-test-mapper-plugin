@@ -106,7 +106,7 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
         if (oldStoriesDir.exists() && oldStoriesDir.isDirectory()) {
             for (File file : getFiles(oldStoriesDir)) {
                 if (file.isFile() && getExtension(file.getPath()).equals("story")) {
-                    Story parsedOldStory = generateStubFromStoryFile(file);
+                    generateStubFromStoryFile(file);
                 } else if (file.isDirectory()) {
                     findStoryFilesAndGenerateNewStories(file);
                 }
@@ -135,7 +135,7 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
         return extension;
     }
 
-    private Story generateStubFromStoryFile(File story) throws MojoExecutionException {
+    private void generateStubFromStoryFile(File story) throws MojoExecutionException {
         String className = getClassNameFrom(story.getName());
         Story parsedOldStory;
         try {
@@ -147,14 +147,11 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
         }
         scenarioStepsFactory.createScenarioStepsClassModelFrom(parsedOldStory);
         createNewStoryFiles(scenarioStepsFactory.getNewStory());
-        return parsedOldStory;
     }
 
     private void createNewStoryFiles(Story newStory) {
-        System.out.println(newStory.getName());
         for(Scenario scenario : newStory.getScenarios()) {
             for(String step : scenario.getSteps()) {
-                System.out.println(step);
             }
         }
     }

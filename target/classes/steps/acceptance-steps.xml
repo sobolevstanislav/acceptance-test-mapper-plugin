@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <acceptance-steps>
     <steps-pair>
+        <old-step>Given I have an implemented JBehave scenario</old-step>
+        <new-step>
+            <step-as-string>I have JBehave scenario</step-as-string>
+            <params>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
         <old-step>Given I have an implemented JBehave scenario with one $parameter</old-step>
         <new-step>
             <step-as-string>Given I have JBehave scenario with $parameter</step-as-string>
@@ -12,7 +21,7 @@
     <steps-pair>
         <old-step>Given the scenario with two $first and $second parameters also works</old-step>
         <new-step>
-            <step-as-string>Given the scenario with $first and $second also works</step-as-string>
+            <step-as-string>Given with '$first' and $second also works</step-as-string>
             <params>
                 <key> $first </key>
                 <key> $second </key>

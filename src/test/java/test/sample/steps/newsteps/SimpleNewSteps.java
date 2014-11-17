@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SimpleNewSteps {
 
-    @Given("I have an implemented JBehave scenario")
+    @Given("I have JBehave scenario")
     public void givenIHaveAnImplementedJBehaveScenario() {
         System.out.println("This is jbehave simple step execution.");
     }
@@ -19,19 +19,9 @@ public class SimpleNewSteps {
         System.out.println("I have an implemented JBehave scenario with one " + parameter);
     }
 
-    @Given("the scenario with '$first' and $second also works")
+    @Given("scenario with $first and $second also works")
     public void givenIHaveAnImplementedJBehaveScenarioWithTwoParameters(String first, String second) {
         System.out.println("I have an implemented JBehave scenario with two " + first + ", " + second + " parameters.");
-    }
-
-    @When("user open '$url'")
-    public void whenUserOpenUrl(String url){
-        System.out.println("User open url - " + url);
-    }
-
-    @When("user save $links for use")
-    public void whenUserSaveLinksForUse(List<String> links){
-        System.out.println("User save links - " + links);
     }
 
     @Then("user should see: $titleTable")

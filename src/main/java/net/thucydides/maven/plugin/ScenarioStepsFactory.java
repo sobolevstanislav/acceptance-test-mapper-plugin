@@ -144,14 +144,7 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
                 }
                 setParametersToStepMethodAndStepCandidate(candidate);
                 addMethodArgumentsToStepMethod(candidate);
-                String newStep = checkIfStepCandidateExistInXMLPairFile(candidate);
-
-                if (newStep != null) {
-                    changeParametersInNewNewStepToCurrent(newStep);
-                    newStepList.add(newStep);
-                } else {
-                    newStepList.add(step);
-                }
+                newStepList.add(checkIfStepCandidateExistInXMLPairFile(candidate, step));
                 return stepMethod;
             }
         }
@@ -244,13 +237,25 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         stepMethod.setMethodArguments(methodArguments);
     }
 
-    private String checkIfStepCandidateExistInXMLPairFile(StepCandidate candidate) {
+    private String checkIfStepCandidateExistInXMLPairFile(StepCandidate candidate, String step) {
         String newStep = null;
 
         acceptanceSteps = XMLUnmarshaller.unmarshal();
+        System.out.println("CANDIDATE: " + candidate.toString());
+        System.out.println("STEP: " + step);
+
         for (StepsPairBean stepsPairBean : acceptanceSteps.getStepsBeanList()) {
             if (stepsPairBean.getOldStep().equalsIgnoreCase(candidate.toString())) {
                 newStep = stepsPairBean.getNewStep().getStepAsString();
+                System.out.println("MATCHED STEP: " + step);
+                System.out.println("NEW STEP: " + newStep);
+                for(String param : parameterNames) {
+                    System.out.println(newStep.indexOf(param));
+                    newStep.replaceFirst()
+                }
+            }
+            else {
+                newStep = step;
             }
         }
         return newStep;
@@ -316,25 +321,7 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         throw new ParameterConverters.ParameterConvertionFailed("No parameter converter for " + type);
     }
 
-    public void changeParametersInNewNewStepToCurrent(String newStep) {
-        System.out.println(newStep);
-        System.out.println(newStep.indexOf("$"));
-        if(newStep.indexOf(" ", newStep.indexOf("$")) == -1) {
-            System.out.println(newStep.length()-1);
-        }
-        else {
-            System.out.println(newStep.indexOf(" ", newStep.indexOf("$")));
-        }
-        for (int i = 0; i < parameterNames.length; i++) {
-            newStep.replaceFirst(acceptanceSteps.getStepsBeanList())
-        }
-    }
-
     public Story getNewStory() {
         return newStory;
-    }
-
-    public void setNewStory(Story newStory) {
-        this.newStory = newStory;
     }
 }
