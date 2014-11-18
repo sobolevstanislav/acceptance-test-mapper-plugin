@@ -35,7 +35,6 @@ public class WhenGenerateScenarioStepsForEachStoryFileTest {
         project = new MavenProject();
 
         pluginOutputDirectory = new File("target/generated");
-        pluginOutputDirectory.mkdir();
         oldStoriesDirectory = new File("src/test/resources/stories/old");
         newStoriesDirectory = new File("src/test/resources/stories/new");
         classesDirectory = new File("target/classes");

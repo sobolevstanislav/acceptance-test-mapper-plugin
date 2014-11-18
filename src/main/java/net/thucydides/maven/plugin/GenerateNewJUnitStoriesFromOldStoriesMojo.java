@@ -1,6 +1,5 @@
 package net.thucydides.maven.plugin;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 
@@ -11,7 +10,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.jbehave.core.i18n.LocalizedKeywords;
-import org.jbehave.core.model.Scenario;
 import org.jbehave.core.model.Story;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.parsers.StoryParser;
@@ -90,14 +88,14 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
      */
     public File outputDirectory;
 
-    public NewStoriesGenerator acceptanceTestStoriesGenerator;
     private StoryParser storyParser;
-    private ScenarioStepsFactory scenarioStepsFactory;
+    private ScenarioStepsFactory scenarioOldStepsFactory;
+    private ScenarioStepsFactory scenarioNewStepsFactory;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         storyParser = new RegexStoryParser(new LocalizedKeywords());
-        scenarioStepsFactory = new ScenarioStepsFactory(packageForOldScenarioSteps, new GetClassloaderWithCustomClasspath(project, classesDirectory, testClassesDirectory).getClassLoader());
-        acceptanceTestStoriesGenerator = new NewStoriesGenerator(oldStoriesDirectory, newStoriesDirectory);
+        scenarioOldStepsFactory = new ScenarioStepsFactory(packageForOldScenarioSteps, new GetClassloaderWithCustomClasspath(project, classesDirectory, testClassesDirectory).getClassLoader());
+        scenarioNewStepsFactory = new ScenarioStepsFactory(packageForNewScenarioSteps, new GetClassloaderWithCustomClasspath(project, classesDirectory, testClassesDirectory).getClassLoader());
         File oldStoriesDir = oldStoriesDirectory;
         findStoryFilesAndGenerateNewStories(oldStoriesDir);
     }
@@ -120,7 +118,6 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
         } catch (NullPointerException e) {
             throw new MojoExecutionException("No files in directory: " + oldStoriesDir.getName(), e);
         }
-
     }
 
     public String getExtension(String fileName) {
@@ -145,15 +142,13 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
         } catch (IOException e) {
             throw new MojoExecutionException("Error creating file " + className, e);
         }
-        scenarioStepsFactory.createScenarioStepsClassModelFrom(parsedOldStory);
-        createNewStoryFiles(scenarioStepsFactory.getNewStory());
+        scenarioOldStepsFactory.createScenarioStepsClassModelFrom(parsedOldStory);
+        createNewStoryFiles(scenarioOldStepsFactory.getNewStory(), story.getName());
     }
 
-    private void createNewStoryFiles(Story newStory) {
-        for(Scenario scenario : newStory.getScenarios()) {
-            for(String step : scenario.getSteps()) {
-            }
-        }
+    private void createNewStoryFiles(Story newStory, String storyName) {
+        NewStoriesGenerator storiesGenerator = new NewStoriesGenerator(oldStoriesDirectory);
+        storiesGenerator.createNewStory(newStory, storyName);
     }
 
     private static String getClassNameFrom(String name) {

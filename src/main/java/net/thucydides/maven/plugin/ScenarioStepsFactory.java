@@ -5,7 +5,6 @@ import net.thucydides.jbehave.reflection.Extract;
 import net.thucydides.maven.plugin.generate.*;
 import net.thucydides.maven.plugin.model.ScenarioStepsClassModel;
 import net.thucydides.maven.plugin.xml.steps.AcceptanceSteps;
-import net.thucydides.maven.plugin.xml.steps.NewStep;
 import net.thucydides.maven.plugin.xml.steps.StepsPairBean;
 import net.thucydides.maven.plugin.xml.unmarshaller.XMLUnmarshaller;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -238,25 +237,27 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
     }
 
     private String checkIfStepCandidateExistInXMLPairFile(StepCandidate candidate, String step) {
-        String newStep = null;
+        String newStep = step;
 
         acceptanceSteps = XMLUnmarshaller.unmarshal();
-        System.out.println("CANDIDATE: " + candidate.toString());
-        System.out.println("STEP: " + step);
 
         for (StepsPairBean stepsPairBean : acceptanceSteps.getStepsBeanList()) {
             if (stepsPairBean.getOldStep().equalsIgnoreCase(candidate.toString())) {
                 newStep = stepsPairBean.getNewStep().getStepAsString();
-                System.out.println("MATCHED STEP: " + step);
-                System.out.println("NEW STEP: " + newStep);
-                for(String param : parameterNames) {
-                    System.out.println(newStep.indexOf(param));
-                    newStep.replaceFirst()
+                if(stepsPairBean.getNewStep().getParams().getKey() != null) {
+                    newStep = changeParamInNewStepToCurrent(stepsPairBean, newStep);
                 }
             }
-            else {
-                newStep = step;
-            }
+        }
+        return newStep;
+    }
+
+    private String changeParamInNewStepToCurrent(StepsPairBean stepsPairBean, String newStep) {
+        int i = 0;
+        for(String key : stepsPairBean.getNewStep().getParams().getKey()) {
+            String paramValue = stepMethod.getMethodArguments().get(i).getArgumentDefaultValue().replaceAll("\"", "");
+            newStep = newStep.replaceAll(java.util.regex.Pattern.quote(key), paramValue);
+            i++;
         }
         return newStep;
     }
@@ -274,10 +275,6 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
 
     private boolean isParametrized(Type type) {
         return type instanceof ParameterizedType;
-    }
-
-    private Type rawType(Type type) {
-        return ((ParameterizedType) type).getRawType();
     }
 
     private Type argumentType(Type type) {
