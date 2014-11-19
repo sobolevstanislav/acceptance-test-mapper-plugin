@@ -90,12 +90,13 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
 
     private StoryParser storyParser;
     private ScenarioStepsFactory scenarioOldStepsFactory;
-    private ScenarioStepsFactory scenarioNewStepsFactory;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
+        System.out.println("=======================");
+        System.out.println("====MAPPING STARTED====");
+        System.out.println("=======================");
         storyParser = new RegexStoryParser(new LocalizedKeywords());
         scenarioOldStepsFactory = new ScenarioStepsFactory(packageForOldScenarioSteps, new GetClassloaderWithCustomClasspath(project, classesDirectory, testClassesDirectory).getClassLoader());
-        scenarioNewStepsFactory = new ScenarioStepsFactory(packageForNewScenarioSteps, new GetClassloaderWithCustomClasspath(project, classesDirectory, testClassesDirectory).getClassLoader());
         File oldStoriesDir = oldStoriesDirectory;
         findStoryFilesAndGenerateNewStories(oldStoriesDir);
     }

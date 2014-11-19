@@ -1,4 +1,4 @@
-old test scenario
+Scenario: old test scenario
 
 Given I have JBehave scenario
 Given I have JBehave scenario with 'param'
