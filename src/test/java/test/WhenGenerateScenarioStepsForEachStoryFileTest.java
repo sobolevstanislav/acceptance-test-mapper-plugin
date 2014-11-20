@@ -21,11 +21,11 @@ public class WhenGenerateScenarioStepsForEachStoryFileTest {
 //    @Rule
 //    public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-    File pluginOutputDirectory;
     File newStoriesDirectory;
     File oldStoriesDirectory;
     File classesDirectory;
     File testClassesDirectory;
+    File outputDirectory;
 
     private MavenProject project = null;
 
@@ -34,17 +34,16 @@ public class WhenGenerateScenarioStepsForEachStoryFileTest {
         plugin = new GenerateNewJUnitStoriesFromOldStoriesMojo();
         project = new MavenProject();
 
-        pluginOutputDirectory = new File("target/generated");
         oldStoriesDirectory = new File("src/test/resources/stories/old");
         newStoriesDirectory = new File("src/test/resources/stories/new");
         classesDirectory = new File("target/classes");
         testClassesDirectory = new File("target/test-classes");
+        outputDirectory = new File("target/generated-test-sources");
 
-        plugin.outputDirectory = pluginOutputDirectory;
         plugin.oldStoriesDirectory = oldStoriesDirectory;
-        plugin.newStoriesDirectory = newStoriesDirectory;
         plugin.classesDirectory = classesDirectory;
         plugin.testClassesDirectory = testClassesDirectory;
+        plugin.outputDirectory = outputDirectory;
 
         plugin.packageForOldScenarioSteps = "test.sample.steps.oldsteps";
         plugin.packageForNewScenarioSteps = "test.sample.steps.newsteps";

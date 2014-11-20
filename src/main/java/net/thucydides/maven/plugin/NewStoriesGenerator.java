@@ -9,14 +9,10 @@ import java.io.PrintWriter;
 
 public class NewStoriesGenerator {
 
-    private File oldStoriesDirectory;
+    public void createNewStory(Story parsedNewStory, String newStoryName, File outputDirectory) {
 
-    public NewStoriesGenerator(File oldStoriesDirectory) {
-        this.oldStoriesDirectory = oldStoriesDirectory;
-    }
-
-    public void createNewStory(Story parsedNewStory, String newStoryName) {
-        File newStoriesDirectory  = new File(oldStoriesDirectory.getAbsolutePath() + "/../new/");
+        File newStoriesDirectory  = new File(outputDirectory.getAbsolutePath() + "/generated-stories");
+        newStoriesDirectory.mkdirs();
         File newStoryFile = new File(newStoriesDirectory.getAbsolutePath() + "/" + newStoryName);
         try {
             PrintWriter printWriter = new PrintWriter(newStoryFile);
@@ -29,7 +25,6 @@ public class NewStoriesGenerator {
                 printWriter.write("\n");
             }
             printWriter.close();
-            newStoriesDirectory.mkdirs();
             newStoryFile.createNewFile();
         } catch (IOException ex) {
         }

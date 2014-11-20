@@ -48,9 +48,10 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
     private List<MethodArgument> scenarioMethodArguments;
     AcceptanceSteps acceptanceSteps;
 
-    public ScenarioStepsFactory(String rootPackage, ClassLoader classLoader) {
+    public ScenarioStepsFactory(String rootPackage, ClassLoader classLoader, AcceptanceSteps acceptanceSteps) {
         super(new MostUsefulConfiguration(), rootPackage, classLoader);
         this.rootPackage = rootPackage;
+        this.acceptanceSteps = acceptanceSteps;
     }
 
     private List<StepCandidate> findStepCandidates() {
@@ -238,9 +239,6 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
 
     private String checkIfStepCandidateExistInXMLPairFile(StepCandidate candidate, String step) {
         String newStep = step;
-
-        acceptanceSteps = XMLUnmarshaller.unmarshal();
-
         for (StepsPairBean stepsPairBean : acceptanceSteps.getStepsBeanList()) {
             if (stepsPairBean.getOldStep().equalsIgnoreCase(candidate.toString())) {
                 newStep = stepsPairBean.getNewStep().getStepAsString();
