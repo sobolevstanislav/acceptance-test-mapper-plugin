@@ -6,13 +6,11 @@ import org.apache.maven.plugin.MojoExecutionException;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.jbehave.core.i18n.LocalizedKeywords;
-import org.jbehave.core.model.Scenario;
 import org.jbehave.core.model.Story;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.parsers.StoryParser;
@@ -90,8 +88,11 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
         System.out.println("=======================");
         System.out.println("====MAPPING STARTED====");
         System.out.println("=======================");
+        System.out.println();
+        System.out.println(packageForOldScenarioSteps);
+        System.out.println();
         storyParser = new RegexStoryParser(new LocalizedKeywords());
-        scenarioOldStepsFactory = new ScenarioStepsFactory(packageForOldScenarioSteps, new GetClassloaderWithCustomClasspath(project, classesDirectory, testClassesDirectory).getClassLoader(), new XMLUnmarshaller().unmarshal());
+        scenarioOldStepsFactory = new ScenarioStepsFactory(packageForOldScenarioSteps, new CustomClassloaderGenerator(project, classesDirectory, testClassesDirectory).getClassLoader(), new XMLUnmarshaller().unmarshal());
         File oldStoriesDir = oldStoriesDirectory;
         findStoryFilesAndGenerateNewStories(oldStoriesDir);
     }

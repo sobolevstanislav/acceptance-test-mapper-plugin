@@ -1,6 +1,6 @@
 Scenario: old test scenario
-
 Given I have JBehave scenario
+Given state 'кириллица'
 Given I have JBehave scenario with 'param'
 When user save 'link' for use
 Given with 'first' and 'second' also works

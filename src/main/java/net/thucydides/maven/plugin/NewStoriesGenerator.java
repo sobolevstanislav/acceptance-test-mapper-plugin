@@ -18,7 +18,6 @@ public class NewStoriesGenerator {
             PrintWriter printWriter = new PrintWriter(newStoryFile);
             for(Scenario scenario : parsedNewStory.getScenarios()) {
                 printWriter.write("Scenario: " + scenario.getTitle() + "\n");
-                printWriter.write("\n");
                 for (String step : scenario.getSteps()) {
                     printWriter.write(step + "\n");
                 }

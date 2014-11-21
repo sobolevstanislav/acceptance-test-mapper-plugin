@@ -144,10 +144,12 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
                 }
                 setParametersToStepMethodAndStepCandidate(candidate);
                 addMethodArgumentsToStepMethod(candidate);
+                System.out.println("ADDING STEP: " + step);
                 newStepList.add(checkIfStepCandidateExistInXMLPairFile(candidate, step));
                 return stepMethod;
             }
         }
+        newStepList.add(step);
         return stepMethod;
     }
 

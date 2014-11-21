@@ -12,13 +12,13 @@ import java.net.URLClassLoader;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GetClassloaderWithCustomClasspath {
+public class CustomClassloaderGenerator {
 
     public MavenProject project = null;
     public File classesDirectory;
     public File testClassesDirectory;
 
-    public GetClassloaderWithCustomClasspath(MavenProject project, File testClassesDirectory, File classesDirectory) {
+    public CustomClassloaderGenerator(MavenProject project, File testClassesDirectory, File classesDirectory) {
         this.project = project;
         this.classesDirectory = classesDirectory;
         this.testClassesDirectory = testClassesDirectory;
