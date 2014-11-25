@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <acceptance-steps>
 
+    <!--It is the configuration file, which helps to map old(acceptance base) steps to new(satisfy web, data, email, e.t.c) steps.
+    The main problem is that some old steps do not have proper pair in new steps - so, during mapping process plugin will add
+    text "(NO MATCHES)" to such step. This step will not work if connected to new acceptance test framework.-->
+
     <!--TEST STEPS-->
     <steps-pair>
         <old-step>Given I have an implemented JBehave scenario</old-step>
@@ -39,91 +43,255 @@
         </new-step>
     </steps-pair>
 
-    <!--DATA ASSERTION STEPS-->
+    <!--IN TABLE STEPS-->
     <steps-pair>
-        <old-step>Then element '$identity' has attribute value '$value'</old-step>
+        <old-step>When in table '$tablePartId' press '$entityText' icon</old-step>
         <new-step>
-            <step-as-string>Then '$identity' contains '$value' text</step-as-string>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
             <params>
-                <key>$id</key>
-                <key>$value</key>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then element '$identity' has not attribute value '$value'</old-step>
+        <old-step>When in table '$tablePartId' press '$entityText' icon for row with '$firstColumnName' '$firstValue'</old-step>
         <new-step>
-            <step-as-string>Then '$identity' does not contain '$value' text</step-as-string>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
             <params>
-                <key>$identity</key>
-                <key>$value</key>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then element '$identity' has attribute value that contains '$value'</old-step>
+        <old-step>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</old-step>
         <new-step>
-            <step-as-string>Then '$identity' contains '$value' text</step-as-string>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
             <params>
-                <key>$identity</key>
-                <key>$value</key>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then element '$identity' has attribute value that does not contains '$value'</old-step>
+        <old-step>When in table '$tablePartId' press '$entityText' link for row with '$firstColumnName' '$firstValue'</old-step>
         <new-step>
-            <step-as-string>Then '$identity' does not contain '$value' text</step-as-string>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
             <params>
-                <key>$identity</key>
-                <key>$value</key>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then element id/name/className '$identity' has text '$textContent'</old-step>
+        <old-step>Then verify that in table '$tablePartId' present row with '$firstColumnName' '$firstValue' and '$secondColumnName' '$secondValue'</old-step>
         <new-step>
-            <step-as-string>Then '$identity' contains '$textContent' text</step-as-string>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tablePartId' present row with '$firstColumnName' '$firstValue' and '$secondColumnName' '$secondValue'</step-as-string>
             <params>
-                <key>$identity</key>
-                <key>$textContent</key>
+                <key>$tablePartId</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
+                <key>$secondColumnName</key>
+                <key>$secondValue</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then element id/name/className '$identity' has not text '$textContent'</old-step>
+        <old-step>Then verify that in table '$tablePartId' row with '$firstColumnName' '$firstValue' is absent</old-step>
         <new-step>
-            <step-as-string>Then '$identity' does not contain '$textContent' text</step-as-string>
+            <step-as-string>Then verify that in table '$tablePartId' row with '$firstColumnName' '$firstValue' is absent</step-as-string>
             <params>
-                <key>$identity</key>
-                <key>$textContent</key>
+                <key>$tablePartId</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then element id/name/className '$id' contains text '$textContent'</old-step>
+        <old-step>Then verify that in table '$tablePartId' present row where '$firstColumnName' is one of '$values'</old-step>
         <new-step>
-            <step-as-string>Then '$identity' contains '$textContent' text</step-as-string>
+            <step-as-string>Then verify that in table '$tablePartId' present row where '$firstColumnName' is one of '$values'</step-as-string>
             <params>
-                <key>$identity</key>
-                <key>$textContent</key>
+                <key>$tablePartId</key>
+                <key>$firstColumnName</key>
+                <key>$values</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then element id/name/className '$id' does not contains text '$textContent'</old-step>
+        <old-step>When in table '$tableId' sorts records by '$columnName' '$sortingType'</old-step>
         <new-step>
-            <step-as-string>Then '$identity' does not contain '$textContent' text</step-as-string>
+            <step-as-string>When in table '$tableId' records are sorted by '$columnName' with '$sortingType' sorting</step-as-string>
             <params>
-                <key>$identity</key>
-                <key>$textContent</key>
+                <key>$tableId</key>
+                <key>$columnName</key>
+                <key>$sortingType</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' elements in column '$columnName' is sorted by '$sortingType'</old-step>
+        <new-step>
+            <step-as-string>Then verify that in table '$tableId' elements in column '$columnName' are sorted by '$sortingType'</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$columnName</key>
+                <key>$sortingType</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tableId' chooses to display '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' is displayed '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' is displayed '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@Then verify that table '$tableId' is empty</old-step>
+        <new-step>
+            <step-as-string>@Then verify that table '$tableId' doesn't contains rows</step-as-string>
+            <params>
+                <key>$tableId</key>
             </params>
         </new-step>
     </steps-pair>
 
-    <!--DATA GENERATION STEPS-->
-    <!--There are SAME old(acceptance) and new(satisfy) steps. The only difference is thar satisfy data generation steps
-    have more step methods, so it may be problem with proper mapping of acceptance and satisfy steps-->
+    <!--WITH TABLE STEPS-->
+    <steps-pair>
+        <old-step>Given user find data table with subtable root selector $root</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Given user find data table with subtable root selector $root</step-as-string>
+            <params>
+                <key>$root</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table click $locator $element for row with parameters: $paramsForFind</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table click $locator $element for row with parameters: $paramsForFind</step-as-string>
+            <params>
+                <key>$locator</key>
+                <key>$element</key>
+                <key>$paramsForFind</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--USE VARIABLE STEPS-->
+    <steps-pair>
+        <old-step>Given unique string with prefix '$prefix' and '$length' length saved to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Given unique string with prefix '$prefix' and '$length' length saved to '$variableName' variable</step-as-string>
+            <params>
+                <key>$prefix</key>
+                <key>$length</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When the user fills '$id' field with '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>When fill '$id' with '$variableName'</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element '$id' has text equal to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Then '$id' contains '$variableName' text</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element '$id' has text not equal to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Then '$id' does not contain '$variableName' text</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@Then verify that in table '$tableId' present row with '$variableName' variable in '$columnName'</old-step>
+        <new-step>
+            <step-as-string>@Then verify that in table '$tableId' present row with '$columnName' and '$variableName'</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$variableName</key>
+                <key>$columnName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@When in table '$tablePartId' press '$linkName' link for row with '$firstColumnName' '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@When in table '$tablePartId' press '$iconName' icon for row with '$firstColumnName' '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
     <steps-pair>
         <old-step></old-step>
         <new-step>
@@ -134,60 +302,6 @@
             </params>
         </new-step>
     </steps-pair>
-
-    <!--USE VARIABLE STEPS-->
-    <steps-pair>
-        <old-step>When save text from '$identity' to '$variableName' variable</old-step>
-        <new-step>
-            <step-as-string>When save text from '$identity' to '$variableName' variable</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$variableName</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>When the user fills '$identity' field with '$value' variable</old-step>
-        <new-step>
-            <step-as-string>When fill '$identity' with '$value'</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element '$identity' contains text from '$value' variable</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' contains '$value' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element '$identity' does not contain text from '$value' variable</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' does not contain '$value' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>When select '$option' variable from '$identity' drop-down</old-step>
-        <new-step>
-            <step-as-string>When select '$option' from '$identity' drop-down</step-as-string>
-            <params>
-                <key>$option</key>
-                <key>$identity</key>
-            </params>
-        </new-step>
-    </steps-pair>
-
-    <!--TABLE STEPS-->
     <steps-pair>
         <old-step></old-step>
         <new-step>
@@ -201,20 +315,20 @@
 
     <!--BASE WEB ELEMENT STEPS-->
     <steps-pair>
-        <old-step>When clicks on '$identity' element</old-step>
+        <old-step>When clicks on '$id' element</old-step>
         <new-step>
-            <step-as-string>When click '$identity'</step-as-string>
+            <step-as-string>When click '$id'</step-as-string>
             <params>
-                <key>$identity</key>
+                <key>$id</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When fills '$identity' element with '$value'</old-step>
+        <old-step>When fills '$id' element with '$value'</old-step>
         <new-step>
-            <step-as-string>When fill '$identity' with '$value'</step-as-string>
+            <step-as-string>When fill '$id' with '$value'</step-as-string>
             <params>
-                <key>$identity</key>
+                <key>$id</key>
                 <key>$value</key>
             </params>
         </new-step>
@@ -222,20 +336,20 @@
 
     <!--PAGE STEPS-->
     <steps-pair>
-        <old-step>When the user opens the '$contextPath' page</old-step>
+        <old-step>Then wait for element '$id' is visible</old-step>
         <new-step>
-            <step-as-string>When open '$contextPath' page</step-as-string>
+            <step-as-string>Then wait '$id' is visible</step-as-string>
             <params>
-                <key>$contextPath</key>
+                <key>$id</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then page has '$title' title</old-step>
+        <old-step>When make '$selector' checked</old-step>
         <new-step>
-            <step-as-string>Then page has '$title' title</step-as-string>
+            <step-as-string>When make checkbox '$selector' checked</step-as-string>
             <params>
-                <key>$title</key>
+                <key>$selector</key>
             </params>
         </new-step>
     </steps-pair>

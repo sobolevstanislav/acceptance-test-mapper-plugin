@@ -39,182 +39,22 @@
         </new-step>
     </steps-pair>
 
-    <!--DATA ASSERTION STEPS-->
-    <steps-pair>
-        <old-step>Then element '$identity' has attribute value '$value'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' contains '$value' text</step-as-string>
-            <params>
-                <key>$id</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element '$identity' has not attribute value '$value'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' does not contain '$value' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element '$identity' has attribute value that contains '$value'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' contains '$value' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element '$identity' has attribute value that does not contains '$value'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' does not contain '$value' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element id/name/className '$identity' has text '$textContent'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' contains '$textContent' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$textContent</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element id/name/className '$identity' has not text '$textContent'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' does not contain '$textContent' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$textContent</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element id/name/className '$id' contains text '$textContent'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' contains '$textContent' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$textContent</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element id/name/className '$id' does not contains text '$textContent'</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' does not contain '$textContent' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$textContent</key>
-            </params>
-        </new-step>
-    </steps-pair>
-
-    <!--DATA GENERATION STEPS-->
-    <!--There are SAME old(acceptance) and new(satisfy) steps. The only difference is thar satisfy data generation steps
-    have more step methods, so it may be problem with proper mapping of acceptance and satisfy steps-->
-    <steps-pair>
-        <old-step></old-step>
-        <new-step>
-            <step-as-string></step-as-string>
-            <params>
-                <key></key>
-                <key></key>
-            </params>
-        </new-step>
-    </steps-pair>
-
-    <!--USE VARIABLE STEPS-->
-    <steps-pair>
-        <old-step>When save text from '$identity' to '$variableName' variable</old-step>
-        <new-step>
-            <step-as-string>When save text from '$identity' to '$variableName' variable</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$variableName</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>When the user fills '$identity' field with '$value' variable</old-step>
-        <new-step>
-            <step-as-string>When fill '$identity' with '$value'</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element '$identity' contains text from '$value' variable</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' contains '$value' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>Then element '$identity' does not contain text from '$value' variable</old-step>
-        <new-step>
-            <step-as-string>Then '$identity' does not contain '$value' text</step-as-string>
-            <params>
-                <key>$identity</key>
-                <key>$value</key>
-            </params>
-        </new-step>
-    </steps-pair>
-    <steps-pair>
-        <old-step>When select '$option' variable from '$identity' drop-down</old-step>
-        <new-step>
-            <step-as-string>When select '$option' from '$identity' drop-down</step-as-string>
-            <params>
-                <key>$option</key>
-                <key>$identity</key>
-            </params>
-        </new-step>
-    </steps-pair>
-
-    <!--TABLE STEPS-->
-    <steps-pair>
-        <old-step></old-step>
-        <new-step>
-            <step-as-string></step-as-string>
-            <params>
-                <key></key>
-                <key></key>
-            </params>
-        </new-step>
-    </steps-pair>
-
     <!--BASE WEB ELEMENT STEPS-->
     <steps-pair>
-        <old-step>When clicks on '$identity' element</old-step>
+        <old-step>When clicks on '$id' element</old-step>
         <new-step>
-            <step-as-string>When click '$identity'</step-as-string>
+            <step-as-string>When click '$id'</step-as-string>
             <params>
-                <key>$identity</key>
+                <key>$id</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When fills '$identity' element with '$value'</old-step>
+        <old-step>When fills '$id' element with '$value'</old-step>
         <new-step>
-            <step-as-string>When fill '$identity' with '$value'</step-as-string>
+            <step-as-string>When fill '$id' with '$value'</step-as-string>
             <params>
-                <key>$identity</key>
+                <key>$id</key>
                 <key>$value</key>
             </params>
         </new-step>
@@ -222,20 +62,20 @@
 
     <!--PAGE STEPS-->
     <steps-pair>
-        <old-step>When the user opens the '$contextPath' page</old-step>
+        <old-step>Then wait for element '$id' is visible</old-step>
         <new-step>
-            <step-as-string>When open '$contextPath' page</step-as-string>
+            <step-as-string>Then wait '$id' is visible</step-as-string>
             <params>
-                <key>$contextPath</key>
+                <key>$id</key>
             </params>
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then page has '$title' title</old-step>
+        <old-step>When make '$selector' checked</old-step>
         <new-step>
-            <step-as-string>Then page has '$title' title</step-as-string>
+            <step-as-string>When make checkbox '$selector' checked</step-as-string>
             <params>
-                <key>$title</key>
+                <key>$selector</key>
             </params>
         </new-step>
     </steps-pair>
