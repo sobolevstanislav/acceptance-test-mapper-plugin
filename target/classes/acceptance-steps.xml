@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <acceptance-steps>
 
+    <!--It is the configuration file, which helps to map old(acceptance base) steps to new(satisfy web, data, email, e.t.c) steps.
+    The main problem is that some old steps do not have proper pair in new steps - so, during mapping process plugin will add
+    text "(NO MATCHES)" to such step. This step will not work if connected to new acceptance test framework.-->
+
     <!--TEST STEPS-->
     <steps-pair>
         <old-step>Given I have an implemented JBehave scenario</old-step>
@@ -39,9 +43,560 @@
         </new-step>
     </steps-pair>
 
+    <!--IN TABLE STEPS-->
+    <steps-pair>
+        <old-step>When in table '$tablePartId' press '$entityText' icon</old-step>
+        <new-step>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tablePartId' press '$entityText' icon for row with '$firstColumnName' '$firstValue'</old-step>
+        <new-step>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</old-step>
+        <new-step>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tablePartId' press '$entityText' link for row with '$firstColumnName' '$firstValue'</old-step>
+        <new-step>
+            <step-as-string>When in table '$tablePartId' press '$entityText' button for row with '$firstColumnName' '$firstValue'</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$entityText</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tablePartId' present row with '$firstColumnName' '$firstValue' and '$secondColumnName' '$secondValue'</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tablePartId' present row with '$firstColumnName' '$firstValue' and '$secondColumnName' '$secondValue'</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
+                <key>$secondColumnName</key>
+                <key>$secondValue</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tablePartId' row with '$firstColumnName' '$firstValue' is absent</old-step>
+        <new-step>
+            <step-as-string>Then verify that in table '$tablePartId' row with '$firstColumnName' '$firstValue' is absent</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$firstColumnName</key>
+                <key>$firstValue</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tablePartId' present row where '$firstColumnName' is one of '$values'</old-step>
+        <new-step>
+            <step-as-string>Then verify that in table '$tablePartId' present row where '$firstColumnName' is one of '$values'</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$firstColumnName</key>
+                <key>$values</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tableId' sorts records by '$columnName' '$sortingType'</old-step>
+        <new-step>
+            <step-as-string>When in table '$tableId' records are sorted by '$columnName' with '$sortingType' sorting</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$columnName</key>
+                <key>$sortingType</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' elements in column '$columnName' is sorted by '$sortingType'</old-step>
+        <new-step>
+            <step-as-string>Then verify that in table '$tableId' elements in column '$columnName' are sorted by '$sortingType'</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$columnName</key>
+                <key>$sortingType</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tableId' chooses to display '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' is displayed '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' is displayed '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$number</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@Then verify that table '$tableId' is empty</old-step>
+        <new-step>
+            <step-as-string>@Then verify that table '$tableId' doesn't contains rows</step-as-string>
+            <params>
+                <key>$tableId</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--WITH TABLE STEPS-->
+    <steps-pair>
+        <old-step>Given user find data table with subtable root selector $root</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Given user find data table with subtable root selector $root</step-as-string>
+            <params>
+                <key>$root</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table click $locator $element for row with parameters: $paramsForFind</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table click $locator $element for row with parameters: $paramsForFind</step-as-string>
+            <params>
+                <key>$locator</key>
+                <key>$element</key>
+                <key>$paramsForFind</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--USE VARIABLE STEPS-->
+    <steps-pair>
+        <old-step>Given unique string with prefix '$prefix' and '$length' length saved to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Given unique string with prefix '$prefix' and '$length' length saved to '$variableName' variable</step-as-string>
+            <params>
+                <key>$prefix</key>
+                <key>$length</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When the user fills '$id' field with '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>When fill '$id' with '$variableName'</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element '$id' has text equal to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Then '$id' contains '$variableName' text</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element '$id' has text not equal to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Then '$id' does not contain '$variableName' text</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that in table '$tableId' present row with '$variableName' variable in '$columnName'</old-step>
+        <new-step>
+            <step-as-string>Then verify that in table '$tableId' present row with '$columnName' and '$variableName'</step-as-string>
+            <params>
+                <key>$tableId</key>
+                <key>$variableName</key>
+                <key>$columnName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tablePartId' press '$linkName' link for row with '$firstColumnName' '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table '$tablePartId' press '$linkName' link for row with '$firstColumnName' '$variableName' variable</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$linkName</key>
+                <key>$firstColumnName</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When in table '$tablePartId' press '$iconName' icon for row with '$firstColumnName' '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When in table '$tablePartId' press '$iconName' icon for row with '$firstColumnName' '$variableName' variable</step-as-string>
+            <params>
+                <key>$tablePartId</key>
+                <key>$iconName</key>
+                <key>$firstColumnName</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element '$id' contains text from '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Then '$id' contains '$variableName' text</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element '$id' does not contain text from  '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Then '$id' does not contain '$variableName' text</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When select '$variableName' variable from '$id' drop-down</old-step>
+        <new-step>
+            <step-as-string>When select '$variableName' from '$id' drop-down</step-as-string>
+            <params>
+                <key>$variableName</key>
+                <key>$id</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--DATA GENERATION STEPS-->
+    <steps-pair>
+        <old-step>Given generated random alphabetic string with length '$length' and saved to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Given generated random alphabetic string with length '$length' and saved to '$variableName' variable</step-as-string>
+            <params>
+                <key>$length</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Given generated random numerical string with length '$length' and saved to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Given generated random numerical string with length '$length' and saved to '$variableName' variable</step-as-string>
+            <params>
+                <key>$length</key>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Given random USA state name saved to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Given random USA state name saved to '$variableName' variable</step-as-string>
+            <params>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Given random USA state abbreviation saved to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Given random USA state abbreviation saved to '$variableName' variable</step-as-string>
+            <params>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Given random email saved to '$variableName' variable</old-step>
+        <new-step>
+            <step-as-string>Given random email saved to '$variableName' variable</step-as-string>
+            <params>
+                <key>$variableName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--EMAIL STEPS-->
+    <steps-pair>
+        <old-step>Given start fake local SMTP and POP3SSL mail server</old-step>
+        <new-step>
+            <step-as-string>Given start fake local mail servers</step-as-string>
+            <params>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When '$from' send email to test mailbox with subject '$subject' and body '$body'</old-step>
+        <new-step>
+            <step-as-string>When '$from' send email to test mailbox with subject '$subject' and body '$body'</step-as-string>
+            <params>
+                <key>$from</key>
+                <key>$subject</key>
+                <key>$body</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When '$from' send email to test mailbox with subject '$subject' and body from file '$fileName'</old-step>
+        <new-step>
+            <step-as-string>When '$from' send email to test mailbox with subject '$subject' and body from file '$fileName'</step-as-string>
+            <params>
+                <key>$from</key>
+                <key>$subject</key>
+                <key>$fileName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that letter sent to test mailbox with subject '$subject' and body '$body'</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that letter sent to test mailbox with subject '$subject' and body '$body'</step-as-string>
+            <params>
+                <key>$subject</key>
+                <key>$body</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that letter sent to test mailbox with subject '$subject' and body from file '$fileName'</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that letter sent to test mailbox with subject '$subject' and body from file '$fileName'</step-as-string>
+            <params>
+                <key>$subject</key>
+                <key>$fileName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that inbox contains letter from '$senderEmail' with '$subject' and '$body'</old-step>
+        <new-step>
+            <step-as-string>Then verify that inbox contains letter from '$senderEmail' with '$subject' and '$body'</step-as-string>
+            <params>
+                <key>$senderEmail</key>
+                <key>$subject</key>
+                <key>$body</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that inbox contains letter from '$senderEmail' with '$subject' and body from file '$fileName'</old-step>
+        <new-step>
+            <step-as-string>Then verify that inbox contains letter from '$senderEmail' with '$subject' and body from file '$fileName'</step-as-string>
+            <params>
+                <key>$senderEmail</key>
+                <key>$subject</key>
+                <key>$fileName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--FILE STEPS-->
+    <steps-pair>
+        <old-step>Then verify that pdf file contains text '$textContent'</old-step>
+        <new-step>
+            <step-as-string>Then verify that pdf file contains text '$textContent' with '$key'</step-as-string>
+            <params>
+                <key>$textContent</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that pdf file does not contains text '$textContent'</old-step>
+        <new-step>
+            <step-as-string>Then verify that pdf file does not contains text '$textContent' with '$key'</step-as-string>
+            <params>
+                <key>$textContent</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that pdf file has '$count' occurrences of text '$textContent'</old-step>
+        <new-step>
+            <step-as-string>Then verify that pdf file has '$count' occurrences of text '$textContent' with '$key'</step-as-string>
+            <params>
+                <key>$count</key>
+                <key>$textContent</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When the user clicks on '$locator' download file</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that file is downloaded</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that file could be downloaded by click on '$locator'</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that pdf text content is equal to '$filePath' text content</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When user uploads last downloaded file to '$id'</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When the user uploads the fileName/filePath '$file' to field with '$id'</old-step>
+        <new-step>
+            <step-as-string></step-as-string>
+            <params>
+                <key></key>
+                <key></key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify XML file content is equal to file '$filePath'</old-step>
+        <new-step>
+            <step-as-string>Then verify XML file content is equal to file '$filePath' with '$key'</step-as-string>
+            <params>
+                <key>$filePath</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify XML file content is similar to file '$filePath'</old-step>
+        <new-step>
+            <step-as-string>@Then verify XML file content is similar to file '$filePath' with '$key'</step-as-string>
+            <params>
+                <key>$filePath</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify XML file contains text '$textContent'</old-step>
+        <new-step>
+            <step-as-string>Then verify XML file contains text '$textContent' with '$key'</step-as-string>
+            <params>
+                <key>$textContent</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify XML file does not contain text '$textContent'</old-step>
+        <new-step>
+            <step-as-string>Then verify XML file does not contain text '$textContent' with '$key'</step-as-string>
+            <params>
+                <key>$textContent</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
     <!--BASE WEB ELEMENT STEPS-->
     <steps-pair>
         <old-step>When clicks on '$id' element</old-step>
+        <new-step>
+            <step-as-string>When click '$id'</step-as-string>
+            <params>
+                <key>$id</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When clicks on '$id' element and confirm browser alert</old-step>
+        <new-step>
+            <step-as-string>When click '$id'</step-as-string>
+            <params>
+                <key>$id</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When clicks on '$id' element and dismiss browser alert</old-step>
         <new-step>
             <step-as-string>When click '$id'</step-as-string>
             <params>
@@ -55,7 +610,44 @@
             <step-as-string>When fill '$id' with '$value'</step-as-string>
             <params>
                 <key>$id</key>
-                <key>$value</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--CALENDAR STEPS-->
+    <steps-pair>
+        <old-step>@Given user find calendar root selector $root</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) @Given user find calendar root selector $root</step-as-string>
+            <params>
+                <key>$root</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@When choose date '$date'</old-step>
+        <new-step>
+            <step-as-string>@When choose date '$date' in '$identity' calendar</step-as-string>
+            <params>
+                <key>$date</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@When choose date $date from datepicker</old-step>
+        <new-step>
+            <step-as-string>@When choose date '$date' in '$identity' date picker</step-as-string>
+            <params>
+                <key>$date</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>@Then selected date $expectedDate appears in the calendar field</old-step>
+        <new-step>
+            <step-as-string>@Then selected date '$expectedDate' appears in the '$identity' calendar</step-as-string>
+            <params>
+                <key>$expectedDate</key>
             </params>
         </new-step>
     </steps-pair>
