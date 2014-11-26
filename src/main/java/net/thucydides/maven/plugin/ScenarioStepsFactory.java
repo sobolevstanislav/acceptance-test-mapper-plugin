@@ -144,7 +144,6 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
                 }
                 setParametersToStepMethodAndStepCandidate(candidate);
                 addMethodArgumentsToStepMethod(candidate);
-                System.out.println("ADDING STEP: " + step);
                 newStepList.add(checkIfStepCandidateExistInXMLPairFile(candidate, step));
                 return stepMethod;
             }
@@ -242,10 +241,14 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
     private String checkIfStepCandidateExistInXMLPairFile(StepCandidate candidate, String step) {
         String newStep = step;
         for (StepsPairBean stepsPairBean : acceptanceSteps.getStepsBeanList()) {
+            System.out.println("CANDIDATE: " + candidate.toString());
+            System.out.println("PAIR:" + stepsPairBean.getOldStep());
             if (stepsPairBean.getOldStep().equalsIgnoreCase(candidate.toString())) {
+                System.out.println("MATCHED");
                 newStep = stepsPairBean.getNewStep().getStepAsString();
                 if(stepsPairBean.getNewStep().getParams().getKey() != null) {
                     newStep = changeParamInNewStepToCurrent(stepsPairBean, newStep);
+                    return newStep;
                 }
             }
         }

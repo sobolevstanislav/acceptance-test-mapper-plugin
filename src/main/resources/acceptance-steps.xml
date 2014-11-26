@@ -47,8 +47,7 @@
     <steps-pair>
         <old-step>When in table '$tablePartId' press '$iconName' icon</old-step>
         <new-step>
-            <step-as-string>When in '$tablePartId' table click on '$iconName' for row with parameters: $params
-            </step-as-string>
+            <step-as-string>When in '$tablePartId' table click on '$iconName' for row with parameters: $params</step-as-string>
             <params>
                 <key>$tablePartId</key>
                 <key>$iconName</key>
@@ -56,11 +55,9 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When in table '$tablePartId' press '$iconName' icon for row with '$firstColumnName' '$firstValue'
-        </old-step>
+        <old-step>When in table '$tablePartId' press '$iconName' icon for row with '$firstColumnName' '$firstValue'</old-step>
         <new-step>
-            <step-as-string>When in '$tablePartId' table click on '$iconName' for row with parameters: $params (old: $firstColumnName, $firstValue)
-            </step-as-string>
+            <step-as-string>When in '$tablePartId' table click on '$iconName' for row with parameters: $params (old: $firstColumnName, $firstValue)</step-as-string>
             <params>
                 <key>$tablePartId</key>
                 <key>$iconName</key>
@@ -70,12 +67,9 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When in table '$tablePartId' press '$buttonText' button for row with '$firstColumnName'
-            '$firstValue'
-        </old-step>
+        <old-step>When in table '$tablePartId' press '$buttonText' button for row with '$firstColumnName' '$firstValue'</old-step>
         <new-step>
-            <step-as-string>When in '$tablePartId' table click on '$buttonText' for row with parameters: $params (old: $firstColumnName, $firstValue)
-            </step-as-string>
+            <step-as-string>When in '$tablePartId' table click on '$buttonText' for row with parameters: $params (old: $firstColumnName, $firstValue)</step-as-string>
             <params>
                 <key>$tablePartId</key>
                 <key>$buttonText</key>
@@ -85,8 +79,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When in table '$tablePartId' press '$linkName' link for row with '$firstColumnName' '$firstValue'
-        </old-step>
+        <old-step>When in table '$tablePartId' press '$linkName' link for row with '$firstColumnName' '$firstValue'</old-step>
         <new-step>
             <step-as-string>When in '$tablePartId' table click on '$linkName' for row with parameters: $params (old: $firstColumnName, $firstValue)
             </step-as-string>
@@ -99,9 +92,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that in table '$tablePartId' present row with '$firstColumnName' '$firstValue' and
-            '$secondColumnName' '$secondValue'
-        </old-step>
+        <old-step>Then verify that in table '$tablePartId' present row with '$firstColumnName' '$firstValue' and '$secondColumnName' '$secondValue'</old-step>
         <new-step>
             <step-as-string>Then verify that in table '$identity' present row where: $params (old: '$firstColumnName', '$firstValue', '$secondColumnName', '$secondValue')
             </step-as-string>
@@ -115,8 +106,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that in table '$tablePartId' row with '$firstColumnName' '$firstValue' is absent
-        </old-step>
+        <old-step>Then verify that in table '$tablePartId' row with '$firstColumnName' '$firstValue' is absent</old-step>
         <new-step>
             <step-as-string>Then verify that in table '$tablePartId' is absent row where: $params (old: $firstColumnName, $firstValue)</step-as-string>
             <params>
@@ -127,8 +117,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that in table '$tablePartId' present row where '$firstColumnName' is one of '$values'
-        </old-step>
+        <old-step>Then verify that in table '$tablePartId' present row where '$firstColumnName' is one of '$values'</old-step>
         <new-step>
             <step-as-string>Then verify that in table '$tablePartId' present row where: $params (old: $firstColumnName, $values)</step-as-string>
             <params>
@@ -150,8 +139,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that in table '$tableId' elements in column '$columnName' is sorted by '$sortingType'
-        </old-step>
+        <old-step>Then verify that in table '$tableId' elements in column '$columnName' is sorted by '$sortingType'</old-step>
         <new-step>
             <step-as-string>(NO MATCHES) Then verify that in table '$tableId' elements in column '$columnName' is sorted by '$sortingType'</step-as-string>
             <params>
@@ -195,8 +183,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page
-        </old-step>
+        <old-step>Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page</old-step>
         <new-step>
             <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed less than or equal '$number'
                 elements per page
@@ -242,8 +229,7 @@
 
     <!--USE VARIABLE STEPS-->
     <steps-pair>
-        <old-step>Given unique string with prefix '$prefix' and '$length' length saved to '$variableName' variable
-        </old-step>
+        <old-step>Given unique string with prefix '$prefix' and '$length' length saved to '$variableName' variable</old-step>
         <new-step>
             <step-as-string>Given unique string with prefix '$prefix' and '$length' length saved to '$variableName' variable
             </step-as-string>
@@ -285,8 +271,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that in table '$tableId' present row with '$variableName' variable in '$columnName'
-        </old-step>
+        <old-step>Then verify that in table '$tableId' present row with '$variableName' variable in '$columnName'</old-step>
         <new-step>
             <step-as-string>Then verify that in table '$tableId' present row where: $params (old: $variableName, $columnName)
             </step-as-string>
@@ -298,9 +283,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When in table '$tablePartId' press '$linkName' link for row with '$firstColumnName' '$variableName'
-            variable
-        </old-step>
+        <old-step>When in table '$tablePartId' press '$linkName' link for row with '$firstColumnName' '$variableName' variable</old-step>
         <new-step>
             <step-as-string>When in '$tablePartId' table click on '$linkName' for row with parameters: $params (old: $firstColumnName, $variableName)
             </step-as-string>
@@ -313,9 +296,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When in table '$tablePartId' press '$iconName' icon for row with '$firstColumnName' '$variableName'
-            variable
-        </old-step>
+        <old-step>When in table '$tablePartId' press '$iconName' icon for row with '$firstColumnName' '$variableName' variable</old-step>
         <new-step>
             <step-as-string>When in '$tablePartId' table click on '$iconName' for row with parameters: $params (old: $firstColumnName, $variableName)
             </step-as-string>
@@ -360,8 +341,7 @@
 
     <!--DATA GENERATION STEPS-->
     <steps-pair>
-        <old-step>Given generated random alphabetic string with length '$length' and saved to '$variableName' variable
-        </old-step>
+        <old-step>Given generated random alphabetic string with length '$length' and saved to '$variableName' variable</old-step>
         <new-step>
             <step-as-string>Given generated random alphabetic string with length '$length' and saved to '$variableName'
                 variable
@@ -373,8 +353,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Given generated random numerical string with length '$length' and saved to '$variableName' variable
-        </old-step>
+        <old-step>Given generated random numerical string with length '$length' and saved to '$variableName' variable</old-step>
         <new-step>
             <step-as-string>Given generated random numerical string with length '$length' and saved to '$variableName'
                 variable
@@ -435,8 +414,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>When '$from' send email to test mailbox with subject '$subject' and body from file '$fileName'
-        </old-step>
+        <old-step>When '$from' send email to test mailbox with subject '$subject' and body from file '$fileName'</old-step>
         <new-step>
             <step-as-string>When '$from' send email to test mailbox with subject '$subject' and body from file
                 '$fileName'
@@ -461,8 +439,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that letter sent to test mailbox with subject '$subject' and body from file '$fileName'
-        </old-step>
+        <old-step>Then verify that letter sent to test mailbox with subject '$subject' and body from file '$fileName'</old-step>
         <new-step>
             <step-as-string>(NO MATCHES) Then verify that letter sent to test mailbox with subject '$subject' and body
                 from file '$fileName'
@@ -486,9 +463,7 @@
         </new-step>
     </steps-pair>
     <steps-pair>
-        <old-step>Then verify that inbox contains letter from '$senderEmail' with '$subject' and body from file
-            '$fileName'
-        </old-step>
+        <old-step>Then verify that inbox contains letter from '$senderEmail' with '$subject' and body from file '$fileName'</old-step>
         <new-step>
             <step-as-string>Then verify that inbox contains letter from '$senderEmail' with '$subject' and body from
                 file '$fileName'
@@ -560,7 +535,7 @@
     <steps-pair>
         <old-step>Then verify that pdf text content is equal to '$filePath' text content</old-step>
         <new-step>
-            <step-as-string></step-as-string>
+            <step-as-string>(NO MATCHES) Then verify that pdf text content is equal to '$filePath' text content</step-as-string>
             <params>
                 <key>$filePath</key>
             </params>
@@ -597,7 +572,7 @@
     <steps-pair>
         <old-step>Then verify XML file content is similar to file '$filePath'</old-step>
         <new-step>
-            <step-as-string>@Then verify XML file content is similar to file '$filePath' with '$key'</step-as-string>
+            <step-as-string>Then verify XML file content is similar to file '$filePath' with '$key'</step-as-string>
             <params>
                 <key>$filePath</key>
             </params>
@@ -635,7 +610,7 @@
     <steps-pair>
         <old-step>When clicks on '$id' element and confirm browser alert</old-step>
         <new-step>
-            <step-as-string>When click '$id'</step-as-string>
+            <step-as-string>When click '$id' (NOT CONFIRMING ALERT)</step-as-string>
             <params>
                 <key>$id</key>
             </params>
@@ -644,7 +619,7 @@
     <steps-pair>
         <old-step>When clicks on '$id' element and dismiss browser alert</old-step>
         <new-step>
-            <step-as-string>When click '$id'</step-as-string>
+            <step-as-string>When click '$id' (NOT DISMISSING ALERT)</step-as-string>
             <params>
                 <key>$id</key>
             </params>
@@ -985,6 +960,7 @@
         <new-step>
             <step-as-string>(NO MATCHES) When press move $command in $targetOrSource list</step-as-string>
             <params>
+                <key>$command</key>
                 <key>$targetOrSource</key>
             </params>
         </new-step>
@@ -994,10 +970,243 @@
         <new-step>
             <step-as-string>(NO MATCHES) When search $text in $targetOrSource list</step-as-string>
             <params>
+                <key>$text</key>
                 <key>$targetOrSource</key>
             </params>
         </new-step>
     </steps-pair>
 
+    <!--RADIO BUTTON BDD STEPS-->
+    <steps-pair>
+        <old-step>Given user find radiobutton group root selector $root</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Given user find radiobutton group root selector $root</step-as-string>
+            <params>
+                <key>$root</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When select '$option' radiobutton</old-step>
+        <new-step>
+            <step-as-string>When click radio button with label '$option'</step-as-string>
+            <params>
+                <key>$option</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then verify that only '$option' is selected</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then verify that only '$option' is selected</step-as-string>
+            <params>
+                <key>$option</key>
+            </params>
+        </new-step>
+    </steps-pair>
 
+    <!--TAB VIEW STEPS-->
+    <steps-pair>
+        <old-step>Given user find tab view root selector $root</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHING) Given user find tab view root selector $root</step-as-string>
+            <params>
+                <key>$root</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When open '$tabName' tab</old-step>
+        <new-step>
+            <step-as-string>When click '$tabName'</step-as-string>
+            <params>
+                <key>$tabName</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When open tab with id '$id'</old-step>
+        <new-step>
+            <step-as-string>When click '$id'</step-as-string>
+            <params>
+                <key>$id</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--USE CSS XPATH STEPS-->
+    <steps-pair>
+        <old-step>When execute javascript '$script'</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When execute javascript '$script'</step-as-string>
+            <params>
+                <key>$script</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When clicks on element by '$xpathOrCss'</old-step>
+        <new-step>
+            <step-as-string>When click '$xpathOrCss'</step-as-string>
+            <params>
+                <key>$xpathOrCss</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When mouseover on element by '$xpathOrCssSelector'</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When mouseover on element by '$xpathOrCssSelector'</step-as-string>
+            <params>
+                <key>$xpathOrCssSelector</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element with '$xpathOrCss' has text '$textContent'</old-step>
+        <new-step>
+            <step-as-string>Then '$xpathOrCss' contains '$textContent' text</step-as-string>
+            <params>
+                <key>$xpathOrCss</key>
+                <key>$textContent</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then element with '$xpathOrCss' has not text '$textContent'</old-step>
+        <new-step>
+            <step-as-string>Then '$xpathOrCss' does not contain '$textContent' text</step-as-string>
+            <params>
+                <key>$xpathOrCss</key>
+                <key>$textContent</key>
+            </params>
+        </new-step>
+    </steps-pair>
+
+
+    <!--WEB ELEMENT WAIT STEPS-->
+    <steps-pair>
+        <old-step>Then wait for element '$id' is not visible</old-step>
+        <new-step>
+            <step-as-string>Then wait '$id' is not visible</step-as-string>
+            <params>
+                <key>$id</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then wait for element '$id' is visible</old-step>
+        <new-step>
+            <step-as-string>Then wait '$id' is visible</step-as-string>
+            <params>
+                <key>$id</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then wait for invisible element '$xpathOrCssSelector'</old-step>
+        <new-step>
+            <step-as-string>Then wait '$xpathOrCssSelector' is not visible</step-as-string>
+            <params>
+                <key>$xpathOrCssSelector</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then wait for visible element '$xpathOrCssSelector'</old-step>
+        <new-step>
+            <step-as-string>Then wait '$xpathOrCssSelector' is visible</step-as-string>
+            <params>
+                <key>$xpathOrCssSelector</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then wait for title '$expectedTitle' contains</old-step>
+        <new-step>
+            <step-as-string>(NO MATHES) Then wait for title '$expectedTitle' contains</step-as-string>
+            <params>
+                <key>$expectedTitle</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then wait for invisible all elements '$xpathOrCssSelector'</old-step>
+        <new-step>
+            <step-as-string>Then wait '$xpathOrCssSelector' is not visible</step-as-string>
+            <params>
+                <key>$xpathOrCssSelector</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then wait until page content animations completed</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then wait until page content animations completed</step-as-string>
+            <params>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>Then wait until all animations on page completed</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Then wait until all animations on page completed</step-as-string>
+            <params>
+            </params>
+        </new-step>
+    </steps-pair>
+
+    <!--WINDOW AND IFRAME STEPS-->
+    <steps-pair>
+        <old-step>Given '$id' iframe</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) Given '$id' iframe</step-as-string>
+            <params>
+                <key>$id</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When the user fills '$id' editor with '$value'</old-step>
+        <new-step>
+            <step-as-string>When fill '$id' with '$value'</step-as-string>
+            <params>
+                <key>$id</key>
+                <key>$value</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When return to page from iframe</old-step>
+        <new-step>
+            <step-as-string>(NO MATCHES) When return to page from iframe</step-as-string>
+            <params>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When return to base window</old-step>
+        <new-step>
+            <step-as-string>When return to base window</step-as-string>
+            <params>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When the user open link with text '$text' in new window</old-step>
+        <new-step>
+            <step-as-string>When open '$text' page</step-as-string>
+            <params>
+                <key>$text</key>
+            </params>
+        </new-step>
+    </steps-pair>
+    <steps-pair>
+        <old-step>When switch to new window</old-step>
+        <new-step>
+            <step-as-string>When switch to new window</step-as-string>
+            <params>
+            </params>
+        </new-step>
+    </steps-pair>
 </acceptance-steps>
