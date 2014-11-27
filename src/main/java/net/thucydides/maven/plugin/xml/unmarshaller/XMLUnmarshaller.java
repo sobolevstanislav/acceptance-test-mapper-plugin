@@ -12,7 +12,6 @@ import javax.xml.bind.Unmarshaller;
 public class XMLUnmarshaller {
 
     public AcceptanceSteps unmarshal() {
-        System.out.println("UNMARSHALLING STARTED");
         AcceptanceSteps acceptanceSteps = new AcceptanceSteps();
         try {
             XMLUnmarshaller.class.getResource("/acceptance-steps.xml");

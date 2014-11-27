@@ -88,9 +88,6 @@ public class GenerateNewJUnitStoriesFromOldStoriesMojo extends AbstractMojo {
         System.out.println("=======================");
         System.out.println("====MAPPING STARTED====");
         System.out.println("=======================");
-        System.out.println();
-        System.out.println(packageForOldScenarioSteps);
-        System.out.println();
         storyParser = new RegexStoryParser(new LocalizedKeywords());
         scenarioOldStepsFactory = new ScenarioStepsFactory(packageForOldScenarioSteps, new CustomClassloaderGenerator(project, classesDirectory, testClassesDirectory).getClassLoader(), new XMLUnmarshaller().unmarshal());
         File oldStoriesDir = oldStoriesDirectory;

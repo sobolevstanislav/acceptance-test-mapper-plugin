@@ -94,8 +94,7 @@
     <steps-pair>
         <old-step>Then verify that in table '$tablePartId' present row with '$firstColumnName' '$firstValue' and '$secondColumnName' '$secondValue'</old-step>
         <new-step>
-            <step-as-string>Then verify that in table '$identity' present row where: $params (old: '$firstColumnName', '$firstValue', '$secondColumnName', '$secondValue')
-            </step-as-string>
+            <step-as-string>Then verify that in table '$identity' present row where: $params (old: '$firstColumnName', '$firstValue', '$secondColumnName', '$secondValue')</step-as-string>
             <params>
                 <key>$tablePartId</key>
                 <key>$firstColumnName</key>
@@ -152,8 +151,7 @@
     <steps-pair>
         <old-step>When in table '$tableId' chooses to display '$number' elements per page</old-step>
         <new-step>
-            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page
-            </step-as-string>
+            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page</step-as-string>
             <params>
                 <key>$tableId</key>
                 <key>$number</key>
@@ -163,8 +161,7 @@
     <steps-pair>
         <old-step>Then verify that in table '$tableId' is displayed '$number' elements per page</old-step>
         <new-step>
-            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page
-            </step-as-string>
+            <step-as-string>(NO MATCHES) When in table '$tableId' chooses to display '$number' elements per page</step-as-string>
             <params>
                 <key>$tableId</key>
                 <key>$number</key>
@@ -174,8 +171,7 @@
     <steps-pair>
         <old-step>Then verify that in table '$tableId' is displayed '$number' elements per page</old-step>
         <new-step>
-            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed '$number' elements per page
-            </step-as-string>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed '$number' elements per page</step-as-string>
             <params>
                 <key>$tableId</key>
                 <key>$number</key>
@@ -185,9 +181,7 @@
     <steps-pair>
         <old-step>Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page</old-step>
         <new-step>
-            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed less than or equal '$number'
-                elements per page
-            </step-as-string>
+            <step-as-string>(NO MATCHES) Then verify that in table '$tableId' is displayed less than or equal '$number' elements per page</step-as-string>
             <params>
                 <key>$tableId</key>
                 <key>$number</key>

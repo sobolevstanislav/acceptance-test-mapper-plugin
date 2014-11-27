@@ -4,18 +4,6 @@ public final class NameUtils {
     private NameUtils() {
     }
 
-    public static String getClassNameFrom(String name) {
-        int extensionIndex = name.lastIndexOf('.');
-        String nameWithOutExtension = name.substring(0, extensionIndex);
-        String[] words = nameWithOutExtension.split("_");
-        StringBuilder builder = new StringBuilder();
-        for (String word : words) {
-            builder.append(Character.toTitleCase(word.charAt(0)))
-                    .append(word.substring(1));
-        }
-        return builder.toString();
-    }
-
     public static String getMethodNameFrom(String text) {
         String[] words = text.split(" ");
         StringBuilder builder = new StringBuilder();

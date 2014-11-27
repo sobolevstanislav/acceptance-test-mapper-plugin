@@ -29,7 +29,6 @@ import static net.thucydides.maven.plugin.utils.NameUtils.*;
 
 public class ScenarioStepsFactory extends ThucydidesStepFactory {
 
-    private String rootPackage;
     private List<StepCandidate> stepCandidates;
     private Map<String, Integer> argumentNames;
 
@@ -50,7 +49,6 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
 
     public ScenarioStepsFactory(String rootPackage, ClassLoader classLoader, AcceptanceSteps acceptanceSteps) {
         super(new MostUsefulConfiguration(), rootPackage, classLoader);
-        this.rootPackage = rootPackage;
         this.acceptanceSteps = acceptanceSteps;
     }
 
@@ -70,10 +68,7 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         return stepCandidates;
     }
 
-    public ScenarioStepsClassModel createScenarioStepsClassModelFrom(Story story) {
-        ScenarioStepsClassModel scenarioStepsClassModel = new ScenarioStepsClassModel();
-        scenarioStepsClassModel.setPackageName(rootPackage);
-        scenarioStepsClassModel.setClassNamePrefix(getClassNameFrom(story.getName()));
+    public void createScenarioStepsClassModelFrom(Story story) {
         imports = new HashSet<String>();
         Set<FieldsSteps> fieldSteps = new HashSet<FieldsSteps>();
         List<ScenarioMethod> scenarios = new ArrayList<ScenarioMethod>();
@@ -81,11 +76,6 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         matchStepsByStoryScenarios(story, scenarios, fieldSteps);
         newStory = new Story(story.getDescription(), story.getNarrative(), newScenarioList);
         newStory.namedAs(story.getName());
-        scenarioStepsClassModel.setImports(imports);
-        scenarioStepsClassModel.setFieldsSteps(fieldSteps);
-        scenarioStepsClassModel.setScenarios(scenarios);
-
-        return scenarioStepsClassModel;
     }
 
     private void matchStepsByStoryScenarios(Story story, List<ScenarioMethod> scenarios, Set<FieldsSteps> fieldSteps) {
@@ -239,12 +229,11 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
     }
 
     private String checkIfStepCandidateExistInXMLPairFile(StepCandidate candidate, String step) {
+        for(MethodArgument argument : stepMethod.getMethodArguments()) {
+        }
         String newStep = step;
         for (StepsPairBean stepsPairBean : acceptanceSteps.getStepsBeanList()) {
-            System.out.println("CANDIDATE: " + candidate.toString());
-            System.out.println("PAIR:" + stepsPairBean.getOldStep());
             if (stepsPairBean.getOldStep().equalsIgnoreCase(candidate.toString())) {
-                System.out.println("MATCHED");
                 newStep = stepsPairBean.getNewStep().getStepAsString();
                 if(stepsPairBean.getNewStep().getParams().getKey() != null) {
                     newStep = changeParamInNewStepToCurrent(stepsPairBean, newStep);
@@ -259,7 +248,7 @@ public class ScenarioStepsFactory extends ThucydidesStepFactory {
         int i = 0;
         for(String key : stepsPairBean.getNewStep().getParams().getKey()) {
             String paramValue = stepMethod.getMethodArguments().get(i).getArgumentDefaultValue().replaceAll("\"", "");
-            newStep = newStep.replaceAll(java.util.regex.Pattern.quote(key), paramValue);
+            newStep = newStep.replace(key, paramValue);
             i++;
         }
         return newStep;
